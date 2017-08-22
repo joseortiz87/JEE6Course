@@ -28,6 +28,10 @@
         <servlet-name>ServletLogout</servlet-name>
         <servlet-class>com.practicas.web.ServletLogout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletAddCookie</servlet-name>
+        <servlet-class>com.practicas.web.ServletAddCookie</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>ServletLogout</servlet-name>
         <url-pattern>/ServletLogout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAddCookie</servlet-name>
+        <url-pattern>/addCookie</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

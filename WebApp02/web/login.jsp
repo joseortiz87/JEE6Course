@@ -29,5 +29,6 @@
             <input type="submit" value="Entrar" />
         </form>
         <button onclick="window.location.href='visitas.jsp'" >Visitas</button>
+        <button onclick="window.location.href='cookies.jsp'" >Cookies</button>
     </body>
 </html>

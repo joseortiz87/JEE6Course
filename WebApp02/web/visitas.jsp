@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Visitas</title>
+        <link rel="stylesheet" href="style.css" ></link>
     </head>
     <body>
         <h1>Visitas!</h1>
