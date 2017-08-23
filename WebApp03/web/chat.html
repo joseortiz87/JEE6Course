@@ -43,15 +43,17 @@ and open the template in the editor.
                 req.send();
             }
             function refresh(){
-                var msgs = req.responseXML.getElementsByTagName("msg");
-                var log = document.getElementById("log");
-                while(log.childNodes[0]){
-                    log.removeChild(log.childNodes[0]);
-                }
-                for(var i=0;i<msgs.length;i++){
-                    var n = document.createElement("li");
-                    n.appendChild(document.createTextNode(msgs[i].textContent));
-                    log.appendChild(n);
+                if(req.responseXML != null){
+                    var msgs = req.responseXML.getElementsByTagName("msg");
+                    var log = document.getElementById("log");
+                    while(log.childNodes[0]){
+                        log.removeChild(log.childNodes[0]);
+                    }
+                    for(var i=0;i<msgs.length;i++){
+                        var n = document.createElement("li");
+                        n.appendChild(document.createTextNode(msgs[i].textContent));
+                        log.appendChild(n);
+                    }
                 }
             }
         </script>
