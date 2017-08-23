@@ -115,9 +115,12 @@ public class CustomIPFilter implements Filter {
             String requestUrl = req.getRequestURL().toString();
 
             String ip = req.getRemoteAddr();
+            String servletPath = req.getServletPath();
             log(".:URL:. [" + ip + "] " +  requestUrl);
+            log(".:PATH:. " + req.getServletPath());
 
-            if(!"0:0:0:0:0:0:0:1".equals(ip) && !"192.168.11.12".equals(ip)){
+            if(!"0:0:0:0:0:0:0:1".equals(ip) && !"192.168.11.12".equals(ip) && !"/notLocalHost.jsp".equals(servletPath)){
+                log(".:REDIRECT - NOT LOCAL IP.:");
                 res.reset();
                 res.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
                 res.setHeader("Location", "notLocalHost.jsp");
