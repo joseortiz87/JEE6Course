@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ServletSleep extends HttpServlet {
 
-    public static Logger logger = Logger.getLogger(ServletSleep.class.getName());
+    public static final Logger logger = Logger.getLogger(ServletSleep.class.getName());
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -50,33 +50,13 @@ public class ServletSleep extends HttpServlet {
                         + Thread.currentThread().getName() );
             out.println("<h3>" + (new java.util.Date()).toString() + "</h3>");
             
-            System.out.println("<h3>Hilo Principal: " 
+            System.out.println("Hilo Principal: " 
                         + "[" + Thread.currentThread().getId() + "] "
                         + Thread.currentThread().getName()
                         + " " + (new java.util.Date()).toString());
             
             final AsyncContext ctxAsy = request.startAsync();
             ctxAsy.setTimeout(12000);
-            ctxAsy.start(new Runnable(){
-                @Override
-                public void run() {
-                    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                    for(int i=0;i<5;i++){
-                        System.out.println("Hilo Asincrono " 
-                                     + "[" + Thread.currentThread().getId() + "] "
-                                     + Thread.currentThread().getName()
-                                     + " " + (new java.util.Date()).toString() );
-                        try{
-                            Thread.sleep(1000);
-                        } catch (InterruptedException ex) {
-                            logger.log(Level.SEVERE, null, ex);
-                            ex.printStackTrace();
-                        }
-                    }
-                    ctxAsy.complete();
-                }
-            });
-            
             ctxAsy.addListener(new AsyncListener(){
                 @Override
                 public void onComplete(AsyncEvent event) throws IOException {
@@ -90,8 +70,9 @@ public class ServletSleep extends HttpServlet {
 
                 @Override
                 public void onTimeout(AsyncEvent event) throws IOException {
-                    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    //throw new UnsupportedOperationException("Not supported yet.");
                     System.out.println("Timeout Async..." + event.toString());
+                    Thread.currentThread().interrupt();
                 }
 
                 @Override
@@ -108,6 +89,29 @@ public class ServletSleep extends HttpServlet {
                                      + "[" + Thread.currentThread().getId() + "] "
                                      + Thread.currentThread().getName()
                                      + " " + (new java.util.Date()).toString() );
+                }
+            });
+            
+            ctxAsy.start(new Runnable(){
+                @Override
+                public void run() {
+                    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    for(int i=0;i<100;i++){
+                        if(Thread.currentThread().isInterrupted()){
+                            break;
+                        }
+                        System.out.println("Hilo Asincrono " 
+                                     + "[" + Thread.currentThread().getId() + "] "
+                                     + Thread.currentThread().getName()
+                                     + " " + (new java.util.Date()).toString() );
+                        try{
+                            Thread.sleep(1000);
+                        } catch (InterruptedException ex) {
+                            logger.log(Level.SEVERE, null, ex);
+                            ex.printStackTrace();
+                        }
+                    }
+                    ctxAsy.complete();
                 }
             });
             

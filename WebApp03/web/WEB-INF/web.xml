@@ -11,6 +11,7 @@
     <servlet>
         <servlet-name>ServletSleep</servlet-name>
         <servlet-class>com.practicas.web.ServletSleep</servlet-class>
+        <async-supported>true</async-supported>
     </servlet>
     <servlet-mapping>
         <servlet-name>ServletPool</servlet-name>
