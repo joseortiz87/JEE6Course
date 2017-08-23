@@ -41,19 +41,7 @@ public class CustomIPFilter implements Filter {
         if (debug) {
             log("CustomIPFilter:DoBeforeProcessing");
         }
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse res = (HttpServletResponse) response;
-        ServletContext contexto = req.getServletContext();
-        String requestUrl = req.getRequestURL().toString();
         
-        String ip = req.getRemoteAddr();
-        if("0:0:0:0:0:0:0:1".equals(ip)){
-            InetAddress inetA = InetAddress.getLocalHost();
-            ip = inetA.getHostAddress();
-            log(".:URL:. [" + ip + "] " +  requestUrl);
-        }else{
-            res.sendRedirect("notLocalHost.jsp");
-        }
         // Write code here to process the request and/or response before
         // the rest of the filter chain is invoked.
         // For example, a logging filter might log items on the request object,
@@ -122,7 +110,20 @@ public class CustomIPFilter implements Filter {
         
         Throwable problem = null;
         try {
-            chain.doFilter(request, response);
+            HttpServletRequest req = (HttpServletRequest) request;
+            HttpServletResponse res = (HttpServletResponse) response;
+            String requestUrl = req.getRequestURL().toString();
+
+            String ip = req.getRemoteAddr();
+            log(".:URL:. [" + ip + "] " +  requestUrl);
+
+            if(!"0:0:0:0:0:0:0:1".equals(ip) && !"192.168.11.12".equals(ip)){
+                res.reset();
+                res.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
+                res.setHeader("Location", "notLocalHost.jsp");
+            }else{ 
+                chain.doFilter(request, response);
+            }
         } catch (Throwable t) {
             // If an exception is thrown somewhere down the filter chain,
             // we still want to execute our after processing, and then
