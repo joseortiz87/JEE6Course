@@ -1,0 +1,41 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22/08/2017, 12:17:30 PM
+    Author     : JAVA
+*/
+
+body{
+    line-height: 1.6em;
+    font-family: "Lucida Sans Unicode","Lucida Frande", sans-serif;
+    color: #009;
+}
+
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+th,td{
+    border: none;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){
+    background-color: rgb(237, 233, 245);
+}
+
+tr:hover td{
+    background: #D0DAFD;
+    color: #339;
+    font-weight: 700;
+}
+
+input[type="text"],input[type="password"]{
+    width: 250px;
+}
