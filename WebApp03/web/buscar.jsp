@@ -25,6 +25,7 @@
             <br/><input type="button" value="Buscar Profesor" onclick="myfn('ServletPool');"></input><br/>
             <br/><input type="button" value="Buscar Alumno" onclick="myfn('ServletJDBC');"></input><br/>
             <br/><input type="button" value="Tarea Asincrona" onclick="myfn('ServletSleep');"></input><br/>
+            <br/><input type="button" value="Chat" onclick="window.location='chat.html'"></input><br/>
         </form>
     </body>
 </html>

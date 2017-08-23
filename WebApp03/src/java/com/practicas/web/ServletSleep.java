@@ -71,7 +71,11 @@ public class ServletSleep extends HttpServlet {
                 @Override
                 public void onTimeout(AsyncEvent event) throws IOException {
                     //throw new UnsupportedOperationException("Not supported yet.");
-                    System.out.println("Timeout Async..." + event.toString());
+                    System.out.println("Timeout Async..." + Thread.currentThread().isInterrupted());
+                    System.out.println("Tarea Asincrona interrumpida " 
+                                     + "[" + Thread.currentThread().getId() + "] "
+                                     + Thread.currentThread().getName()
+                                     + " " + (new java.util.Date()).toString() );
                     Thread.currentThread().interrupt();
                 }
 

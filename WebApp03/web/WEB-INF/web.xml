@@ -13,6 +13,10 @@
         <servlet-class>com.practicas.web.ServletSleep</servlet-class>
         <async-supported>true</async-supported>
     </servlet>
+    <servlet>
+        <servlet-name>ServletChat</servlet-name>
+        <servlet-class>com.practicas.web.ServletChat</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletPool</servlet-name>
         <url-pattern>/ServletPool</url-pattern>
@@ -24,6 +28,10 @@
     <servlet-mapping>
         <servlet-name>ServletSleep</servlet-name>
         <url-pattern>/ServletSleep</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletChat</servlet-name>
+        <url-pattern>/ServletChat</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

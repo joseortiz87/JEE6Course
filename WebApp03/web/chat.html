@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Chat</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <h1>Chat</h1>
+        <script>
+            var req;
+            window.onload = init;
+            function init(){
+                setInterval(update,3000);
+            }
+            function update(){
+                req = new window.XMLHttpRequest();
+                req.open("GET","ServletChat",true);
+                req.send();
+                req.onload = refresh;
+            }
+            function setname(){
+                var name = document.getElementById("uname").value;
+                req = new window.XMLHttpRequest();
+                req.open("GET","ServletChat?uname=" + name,true);
+                req.send();
+            }
+            function send(){
+                var newmsg = document.getElementById("newmsg").value;
+                req = new window.XMLHttpRequest();
+                req.open("GET","ServletChat?inserta=1&newmsg=" + newmsg,true);
+                req.send();
+            }
+            function clearChat(){
+                req = new window.XMLHttpRequest();
+                req.open("GET","ServletChat?clear=1",true);
+                req.send();
+            }
+            function refresh(){
+                var msgs = req.responseXML.getElementsByTagName("msg");
+                var log = document.getElementById("log");
+                while(log.childNodes[0]){
+                    log.removeChild(log.childNodes[0]);
+                }
+                for(var i=0;i<msgs.length;i++){
+                    var n = document.createElement("li");
+                    n.appendChild(document.createTextNode(msgs[i].textContent));
+                    log.appendChild(n);
+                }
+            }
+        </script>
+        
+        <div>
+            <ol id="log"></ol>
+            <hr/>
+            <input type="text" id="uname" placeholder="Nombre de Usuario" />
+            <input type="button" value="Definir nombre usuario" onclick="setname();" /> <br/>
+            <input type="text" id="newmsg" placeholder="Escribe mensaje" />
+            <input type="button" value="Enviar" onclick="send();" /> <br/>
+            <input type="button" value="Limpiar Chat" onclick="clearChat();" /> <br/>
+            <hr/>
+        </div>
+        
+    </body>
+</html>
