@@ -17,7 +17,7 @@ public class ConnectionManager {
     private static final String url = "jdbc:mysql://bd.arcelia.net:3306/bdcolegio02";
     private static final String driver = "com.mysql.jdbc.Driver";
     private static final String user = "fesalu";
-    private static final String password = "dbfes123";
+    private static final String password = "bdfes123";
     private static Connection conn;
     
     public static Connection getConnection() throws SQLException{

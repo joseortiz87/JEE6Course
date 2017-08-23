@@ -13,7 +13,7 @@
         <script>
             function myfn(tipo){
                 var formBusqueda = document.getElementById("formBusqueda");
-                formBusqueda.action = "ServletJDBC";
+                formBusqueda.action = tipo;
                 formBusqueda.submit();
             }
         </script>
