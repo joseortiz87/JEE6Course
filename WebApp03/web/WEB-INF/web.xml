@@ -8,6 +8,10 @@
         <servlet-name>ServletJDBC</servlet-name>
         <servlet-class>com.practicas.web.ServletJDBC</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletSleep</servlet-name>
+        <servlet-class>com.practicas.web.ServletSleep</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletPool</servlet-name>
         <url-pattern>/ServletPool</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>ServletJDBC</servlet-name>
         <url-pattern>/ServletJDBC</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletSleep</servlet-name>
+        <url-pattern>/ServletSleep</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
