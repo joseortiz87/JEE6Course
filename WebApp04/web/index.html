@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>WebApp04</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Ejemplo JSP</h1>
+        <form action="objeto.jsp">
+            <input type="text" name="uname" placeholder="Escribe un nombre"/>
+            <input type="submit" value="Ir" />
+        </form>
+        <h2>Exception</h2>
+        <button onclick="document.location.href='division.jsp';" >Division</button>
+        <h2>POJO</h2>
+        <button onclick="document.location.href='fruta.jsp';" >Fruta</button>
+        <h2>Action Tag</h2>
+        <button onclick="document.location.href='actiontag.jsp';" >Action Tag</button>
+        <h2>Expresion Languaje</h2>
+        <form action="el.jsp" method="POST">
+            <input type="text" name="uname" placeholder="Escribe nombre" />
+            <input type="text" name="n1" placeholder="N1" />
+            <input type="text" name="n2" placeholder="N2" />
+            <input type="submit" name="action" value="Ir a EL" />
+        </form>
+    </body>
+</html>
