@@ -13,6 +13,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>EL</title>
+        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
         <h1>EL!</h1>

@@ -9,6 +9,7 @@ and open the template in the editor.
         <title>WebApp04</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
         <h1>Ejemplo JSP</h1>
@@ -28,6 +29,17 @@ and open the template in the editor.
             <input type="text" name="n1" placeholder="N1" />
             <input type="text" name="n2" placeholder="N2" />
             <input type="submit" name="action" value="Ir a EL" />
+        </form>
+        <h2>JSTL</h2>
+        <form action="jstl.jsp">
+            <input type="text" name="name" placeholder="Escribe un nombre" />
+            <input type="text" name="precio" placeholder="Escribe una cantidad" />
+            <input type="submit" name="action" value="Ir a JSTL" />
+        </form>
+        <h2>JSTL +SQL + JDBC</h2>
+        <form action="jstlSqlJdbc.jsp">
+            <input type="text" name="name" placeholder="Nombre Alumno" />
+            <input type="submit" name="action" value="JSTL +SQL + JDBC" />
         </form>
     </body>
 </html>

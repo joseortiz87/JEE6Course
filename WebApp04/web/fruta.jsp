@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Fruta</title>
+        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
         <jsp:include page="imprimirfecha.jsp" ></jsp:include>

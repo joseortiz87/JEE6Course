@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Action Tags</title>
+        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
         <h1>Action Tags</h1>
