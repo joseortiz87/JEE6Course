@@ -46,13 +46,15 @@
             ${sql}
         </sql:query>
         <c:if test="${rs != null}">
-            <h2>${rs.rowCount} chats localizados</h2>
+            <h2>${rs.rowCount} Mensajes localizados</h2>
             <table>
                 <thead>
                     <tr>
                         <c:forEach var="colNames" items="${rs.columnNames}">
                             <th>${fn:toUpperCase(colNames)}</th>
                         </c:forEach>
+                        <th>VER</th>
+                        <th>ELIMINAR</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,6 +63,12 @@
                             <c:forEach var="col" items="${row}">
                                 <td>${col}</td>
                             </c:forEach>
+                            <td>
+                                <button onclick="document.location.href='jstlview.jsp?id=${row[0]}&op=update'">Ver</button>
+                            </td>
+                            <td>
+                                <button onclick="document.location.href='jstlview.jsp?id=${row[0]}&op=delete'">Eliminar</button>
+                            </td>
                         </tr>
                     </c:forEach>
                 </tbody>
