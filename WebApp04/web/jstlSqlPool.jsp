@@ -1,6 +1,6 @@
 <%-- 
-    Document   : jstlSqlJdbc
-    Created on : 24/08/2017, 03:44:26 PM
+    Document   : jstlSqlPool
+    Created on : 24/08/2017, 04:39:07 PM
     Author     : JAVA
 --%>
 
@@ -15,26 +15,38 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="style.css" />
-        <title>JSTL + SQL + JDBC</title>
+        <title>Chat</title>
     </head>
     <body>
-        <h1>Alumnos</h1>
-        <c:if test="${fn:length(param.name) > 0}" >
-            <c:set var="name" value="${'%'.concat(param.name).concat('%')}" />
-        </c:if>
-        <c:if test="${fn:length(param.name) == 0}" >
-            <c:set var="name" value="%%" />
-        </c:if>
-        <sql:setDataSource var="conn" driver="com.mysql.jdbc.Driver"
-                           url="jdbc:mysql://bd.arcelia.net:3306/bdcolegio02"
-                           user="fesalu" password="bdfes123"/>
-        <sql:query dataSource="${conn}" var="rs">
-            SELECT clave_alu,nombre,ap_paterno,ap_materno,curp
-            FROM alumnos WHERE nombre LIKE (?)
-            <sql:param value="${name}" />
+        <h1>Mensajes Chat!</h1>
+        <sql:query dataSource="jdbc/DS03" var="rs">
+            SELECT owner FROM chat GROUP BY owner ORDER BY 1
+        </sql:query>
+        <form action="" method="POST">
+            <select name="dominio">
+                <c:if test="${rs != null}">
+                    <c:forEach var="row" items="${rs.rows}">
+                        <option value="${row.owner}">${row.owner}</option>
+                    </c:forEach>
+                </c:if>
+            </select>
+            <input type="submit" value="Ver" />
+        </form>
+        <c:choose>
+            <c:when test="${param.dominio != null}" >
+                <c:set var="sql" value="SELECT id,owner as dominio,usuario,mensaje,fecha FROM chat 
+                       WHERE owner = '${param.dominio}' ORDER BY 2" />
+            </c:when>
+            <c:otherwise>
+                <c:set var="sql" value="SELECT id,owner as dominio,usuario,mensaje,fecha FROM chat 
+                       ORDER BY 2" />
+            </c:otherwise>
+        </c:choose>
+        <sql:query dataSource="jdbc/DS03" var="rs">
+            ${sql}
         </sql:query>
         <c:if test="${rs != null}">
-            <h2>${rs.rowCount} alumnos localizados</h2>
+            <h2>${rs.rowCount} chats localizados</h2>
             <table>
                 <thead>
                     <tr>
