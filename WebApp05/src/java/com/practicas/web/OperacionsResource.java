@@ -62,6 +62,45 @@ public class OperacionsResource {
                 response("Numero Aleatorio POST","","No puedo guardar"),
                 MediaType.APPLICATION_JSON).build();
     }
+    
+    @GET
+    @Path("/fibo/{limite}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response fibo(@PathParam("limite") int limite){
+        int res;
+        StringBuilder str = new StringBuilder();
+        if(limite < 0){
+            return Response.status(Response.Status.BAD_REQUEST)
+                .entity(response("Fibo " + limite,"","El numero limite debe ser mayor que 0"))
+                .build();
+        }
+        //limite 0 & 1
+        if(limite == 0){
+            str.append("0");
+        }else if(limite == 1){
+            str.append("0 1");
+        }else{
+            // limite >= 2
+            res = 1;
+            str.append("0 1");
+            for(int i=2;i<=limite;i++){
+                res += i;
+                str.append(" ").append(res);
+            }
+        }
+        return Response.ok(
+                response("Fibo " + limite,"",str.toString()),
+                MediaType.APPLICATION_JSON).build();
+    }
+    
+    @GET
+    @Path("/suma/{v1}/{v2}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response suma(@PathParam("v1") int v1,@PathParam("v2") int v2){
+        return Response.ok(
+                response("Suma",v1+","+v2,String.valueOf(v1+v2)),
+                MediaType.APPLICATION_JSON).build();
+    }
 
     /**
      * POST method for creating an instance of OperacionResource

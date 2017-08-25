@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
@@ -87,5 +89,34 @@ public class Profesor {
     public void setCelular(String celular) {
         this.celular = celular;
     }
+
+    @Override
+    public String toString() {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("nombre_profesor", nombre_profesor);
+            obj.put("curp", curp);
+            obj.put("email", email);
+            obj.put("profesion", profesion);
+            obj.put("celular", celular);
+            return obj.toString(4); //To change body of generated methods, choose Tools | Templates.
+        } catch (JSONException ex) {
+            Logger.getLogger(Profesor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj.toString();
+    }
     
+    public JSONObject toJson(){
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("nombre_profesor", nombre_profesor);
+            obj.put("curp", curp);
+            obj.put("email", email);
+            obj.put("profesion", profesion);
+            obj.put("celular", celular);
+        } catch (JSONException ex) {
+            Logger.getLogger(Profesor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
 }

@@ -31,6 +31,8 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.practicas.web.OperacionResource.class);
         resources.add(com.practicas.web.OperacionsResource.class);
+        resources.add(com.practicas.web.PersonaResource.class);
+        resources.add(com.practicas.web.PersonasResource.class);
     }
     
 }
