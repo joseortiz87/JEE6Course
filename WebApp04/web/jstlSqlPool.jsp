@@ -22,7 +22,7 @@
         <sql:query dataSource="jdbc/DS03" var="rs">
             SELECT owner FROM chat GROUP BY owner ORDER BY 1
         </sql:query>
-        <form action="" method="POST">
+        <form action="jstlSqlPool.jsp" method="POST">
             <select name="dominio">
                 <c:if test="${rs != null}">
                     <c:forEach var="row" items="${rs.rows}">
@@ -47,6 +47,7 @@
         </sql:query>
         <c:if test="${rs != null}">
             <h2>${rs.rowCount} Mensajes localizados</h2>
+            <button onclick="document.location.href='jstlview.jsp?id=${row[0]}&owner=${param.dominio}&op=insert'">Nuevo Mensaje</button>
             <table>
                 <thead>
                     <tr>
@@ -64,10 +65,10 @@
                                 <td>${col}</td>
                             </c:forEach>
                             <td>
-                                <button onclick="document.location.href='jstlview.jsp?id=${row[0]}&op=update'">Ver</button>
+                                <button onclick="document.location.href='jstlview.jsp?id=${row[0]}&owner=${row[1]}&op=update'">Ver</button>
                             </td>
                             <td>
-                                <button onclick="document.location.href='jstlview.jsp?id=${row[0]}&op=delete'">Eliminar</button>
+                                <button onclick="document.location.href='jstlview.jsp?id=${row[0]}&owner=${row[1]}&op=delete'">Eliminar</button>
                             </td>
                         </tr>
                     </c:forEach>
