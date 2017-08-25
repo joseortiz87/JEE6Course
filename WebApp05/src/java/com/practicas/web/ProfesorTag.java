@@ -47,7 +47,7 @@ public class ProfesorTag extends SimpleTagSupport {
                 
                 StringBuilder str = new StringBuilder();
                 out.print("<h2>" + curp + "</h2>");
-                str.append("<ol>");
+                str.append("<ul>");
                 if(showNombre != null && showNombre){
                     str.append("<li>Nombre: ").append(profesor.getNombre_profesor()).append("</li>");
                 }
@@ -63,7 +63,7 @@ public class ProfesorTag extends SimpleTagSupport {
                 if(showCelular != null && showCelular){
                     str.append("<li>Celular: ").append(profesor.getCelular()).append("</li>");
                 }
-                str.append("</ol>");
+                str.append("</ul>");
                 out.print(str.toString());
             }
         }
